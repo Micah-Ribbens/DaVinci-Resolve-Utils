@@ -33,7 +33,7 @@ class FileWriter:
 
             # Because the next frame's start is the previous frame's end + the main_clip_picture_duration
             # Also frame_starts has a start value of 0, so that must be accounted for
-            if len(self.frame_starts) != self.number_of_pictures:
+            if len(frame_starts) != self.number_of_pictures:
                 previous_frame_start += main_clip_picture_duration
                 frame_starts.append(previous_frame_start)
 
@@ -57,9 +57,9 @@ rootFolder = mediaPool:GetRootFolder()
 clips = rootFolder:GetClips()
 mainClipName = "{self.main_clip_name}"
 -- Needed because lists in lua don't use []
-frameStarts = {"{"+file_starts[1:len(file_starts) - 2]+"}"}
-frameEnds = {"{"+file_ends[1:len(file_ends) - 2]+"}"}
-maxIndex = {self.number_of_pictures - 1}
+frameStarts = {"{"+file_starts[1:len(file_starts) - 1]+"}"}
+frameEnds = {"{"+file_ends[1:len(file_ends) - 1]+"}"}
+maxIndex = {self.number_of_pictures}
 
 -- Gets the Main Clip
 for clipIndex in pairs(clips) do

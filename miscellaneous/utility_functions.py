@@ -85,12 +85,13 @@ def get_clip_frames(previous_time_code, current_time_code):
 def get_time_code_components(time_code):
     """returns: int[] {hours, minutes, seconds, milliseconds}; the components in the time code- 00:05:03:20"""
     return_value = [
-        int(time_code[0:2]) - 1,
+        int(time_code[0:2]),
         int(time_code[3:5]),
         int(time_code[6:8]),
         int(time_code[9:11])
     ]
     return return_value
+
 
 
 

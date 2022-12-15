@@ -21,6 +21,12 @@ class DavinciResolveIndexReader:
         for lines_dictionary in csv_file:
             current_time_code = lines_dictionary["Source In"]
 
+            # Because the time code starts at 01:00:00:00, 1 must be subtracted
+            correct_hours = int(current_time_code[0:2]) - 1
+            # Must have an additional 0 if it is less than 9- '01'
+            correct_hours = f"0{str(correct_hours)}" if correct_hours <= 9 else str(correct_hours)
+            current_time_code = correct_hours + current_time_code[2:]
+
             if lines_dictionary.get("Color") != image_marker_color:
                 continue
 
