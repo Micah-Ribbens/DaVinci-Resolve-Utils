@@ -1,0 +1,33 @@
+
+-- Gets Everything that is needed from resolve
+resolve = Resolve()
+projectManager = resolve:GetProjectManager()
+project = projectManager:GetCurrentProject()
+mediaPool = project:GetMediaPool()
+rootFolder = mediaPool:GetRootFolder()
+clips = rootFolder:GetClips()
+startFrameTimecodes
+mainClip = nil
+mainClipName = "Main"
+frameStarts = [7500, 15000]
+frameEnds = [33869, 44279]
+maxIndex = 10
+
+-- Gets the Main Clip
+for clipIndex in pairs(clips) do
+  clip = clips[clipIndex]
+  if clip:GetName() == mainClipName then
+    mainClip = clip
+  end
+end
+
+for index = 0,maxIndex,1 do 
+    subClip = {}
+    subClip["mediaPoolItem"] = clip
+    subClip["startFrame"] = frameStarts[index]
+    subClip["endFrame"] = frameEnds[index]
+
+    if mediaPool:AppendToTimeline({ subClip }) then
+      print("added clip to time line")
+    end
+end
